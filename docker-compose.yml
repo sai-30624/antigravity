@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Database Service
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: libranet
+      MYSQL_ROOT_PASSWORD: Mari1410$  # Using the default from application.yml for consistency
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API Service
+  backend:
+    build:
+      context: ./backend
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # These environment variables override application.yml for cloud/docker deployment
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/libranet?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: Mari1410$
+      SERVER_PORT: 8081
+    ports:
+      - "8081:8081"
+
+  # Frontend Web Service
+  frontend:
+    build:
+      context: ./frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
