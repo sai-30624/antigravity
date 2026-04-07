@@ -53,13 +53,13 @@ public class DataSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         System.out.println("Clearing and Seeding Libranet Data...");
         
-        userActivityRepository.deleteAllInBatch();
-        bookmarkRepository.deleteAllInBatch();
-        reviewRepository.deleteAllInBatch();
-        resourceRepository.deleteAllInBatch();
-        userRepository.deleteAllInBatch();
-        categoryRepository.deleteAllInBatch();
-        tagRepository.deleteAllInBatch();
+        userActivityRepository.deleteAll();
+        bookmarkRepository.deleteAll();
+        reviewRepository.deleteAll();
+        resourceRepository.deleteAll();
+        userRepository.deleteAll();
+        categoryRepository.deleteAll();
+        tagRepository.deleteAll();
 
         System.out.println("Seeding Libranet Comprehensive Realistic Data...");
 
