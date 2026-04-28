@@ -18,7 +18,7 @@ spring:
       max-request-size: 100MB
 
 server:
-  port: 8081
+  port: ${PORT:8081}
 
 app:
   jwt:
