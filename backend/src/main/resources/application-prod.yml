@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    show-sql: false
+
+logging:
+  level:
+    com.libranet: INFO
+    org.springframework.security: WARN
+
+server:
+  forward-headers-strategy: framework

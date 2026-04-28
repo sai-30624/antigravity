@@ -1,0 +1,9 @@
+target/
+.git/
+.gitignore
+.mvn/
+.idea/
+.vscode/
+*.log
+backend_*.txt
+uploads/
